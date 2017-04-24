@@ -1,3 +1,4 @@
+import {FlightSearchComponent} from './flight-search/flight-search.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +13,7 @@ import { AppComponent } from './app.component';
     HttpModule
   ],
   declarations: [  // EIGENEN KOMPONENTEN, ...
-    AppComponent
+    AppComponent, FlightSearchComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
