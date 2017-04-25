@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { FormsModule } from "@angular/forms";
 import { SharedModule } from "../shared/shared.module";
+import { FlightCardComponent } from "./flight-card.component";
 
 
 @NgModule({
@@ -12,7 +13,8 @@ import { SharedModule } from "../shared/shared.module";
         SharedModule
     ],
     declarations: [
-        FlightSearchComponent
+        FlightSearchComponent,
+        FlightCardComponent
     ],
     providers: [],
     exports: [

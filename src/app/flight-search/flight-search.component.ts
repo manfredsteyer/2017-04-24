@@ -16,6 +16,12 @@ export class FlightSearchComponent {
     selectedFlight: Flight;
     message: string;
 
+    basket = {
+        "3": true,
+        "4": false,
+        "5": true
+    };
+
     // private http: Http;
 
     constructor(private flightService: FlightService) {
