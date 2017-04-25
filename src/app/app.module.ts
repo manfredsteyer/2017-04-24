@@ -7,16 +7,19 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FlightService } from "./flight-search/flight.service";
 import { BASE_URL } from './app.tokens';
+import { CityPipe } from "./shared/pipes/city.pipe";
+import { FlightBookingModule } from "./flight-search/flight-booking.module";
 
 
 @NgModule({
   imports: [    // ANDERE MODULE
     BrowserModule,
-    FormsModule,
-    HttpModule
+    HttpModule,
+    FlightBookingModule
   ],
   declarations: [  // EIGENEN KOMPONENTEN, ...
-    AppComponent, FlightSearchComponent
+    // Shell
+    AppComponent
   ],
   providers: [
     // { provide: FlightService, useClass: FlightService }
