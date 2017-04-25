@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { CityPipe } from "./pipes/city.pipe";
+import { CityValidationDirective } from "./validators/city-validation.directive";
 
 
 @NgModule({
@@ -8,11 +9,13 @@ import { CityPipe } from "./pipes/city.pipe";
         CommonModule
     ],
     declarations: [
-        CityPipe
+        CityPipe,
+        CityValidationDirective
     ],
     providers: [],
     exports: [
-        CityPipe
+        CityPipe,
+        CityValidationDirective
     ]
 })
 export class SharedModule { }

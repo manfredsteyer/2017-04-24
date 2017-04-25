@@ -1,12 +1,31 @@
 
+
+<form #f="ngForm">
+
 <div class="form-group">
     <label>From</label>
-    <input [(ngModel)]="from" class="form-control">
+    <input 
+        required
+        minlength="3"
+        maxlength="30"
+        pattern="[A-Za-zöäüßÖÄÜ]*"
+        name="from"
+        city="Graz,Hamburg,Zürich,Nürnberg,Wien,Berlin,Frankfurt"
+        [(ngModel)]="from" 
+        class="form-control"> 
+
+    <div *ngIf="!f?.controls['from']?.valid">Fehler<pre>{{ f?.controls['from']?.errors | json }}</pre></div>
+    <div *ngIf="f?.controls['from']?.hasError('required')">Required</div>
+    <div *ngIf="f?.controls['from']?.hasError('minlength')">Minlength</div>
+    <div *ngIf="f?.controls['from']?.hasError('maxlength')">Maxlength</div>
+    <div *ngIf="f?.controls['from']?.hasError('pattern')">Pattern</div>
+    <div *ngIf="f?.controls['from']?.hasError('city')">City</div>
+
 </div>
 
 <div class="form-group">
     <label>To</label>
-    <input [(ngModel)]="to" class="form-control">
+    <input [(ngModel)]="to" name="to" class="form-control">
 </div>
 
 <div class="form-group">
@@ -18,6 +37,7 @@
     </button>
 </div>
 
+</form>
 <!--
     [ngClass]="{ 'active': f == selectedFlight }"
 -->
