@@ -7,13 +7,19 @@ import { FlightService } from "../flight-search/flight.service";
     selector: 'flight-search',
     templateUrl: './flight-search.component.html',
     styleUrls: ['./flight-search.component.css'],
-    providers: [FlightService]
+    providers: []
 })
 export class FlightSearchComponent {
 
     from: string;
     to: string;
-    flights: Array<Flight> = [];
+    // flights: Array<Flight> = [];
+
+    // let x = comp.flights;
+    get flights() {
+        return this.flightService.flights;
+    }
+
     selectedFlight: Flight;
     message: string;
 
@@ -36,19 +42,9 @@ export class FlightSearchComponent {
         }
 
         return new Promise<Flight[]>((resolve: Function, reject: Function) => {
-            this.flightService
-                .find(this.from, this.to)
-                .subscribe(
-                    flights => { 
-                        this.flights = flights; 
-                        resolve(flights);
-                    },
-                    errResponse => { 
-                        console.error('Fehler beim Laden', errResponse); 
-                        reject(errResponse);
-                    }
-                );
 
+            this.flightService.find(this.from, this.to);
+            
         });
     }
 

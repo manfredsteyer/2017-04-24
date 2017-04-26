@@ -8,6 +8,7 @@ import { ReactiveFlightSearchComponent } from "app/reactive-flight-search/reacti
 import { FlightBookingRouterModule } from "./flight-booking.routes";
 import { PassengerSearchComponent } from "../passenger-search/passenger-search.component";
 import { FlightEditComponent } from "../flight-edit/flight-edit.component";
+import { FlightService } from "app/flight-search/flight.service";
 
 
 @NgModule({
@@ -25,7 +26,9 @@ import { FlightEditComponent } from "../flight-edit/flight-edit.component";
         PassengerSearchComponent,
         FlightEditComponent
     ],
-    providers: [],
+    providers: [
+        FlightService
+    ],
     exports: [
         FlightSearchComponent,
         ReactiveFlightSearchComponent
