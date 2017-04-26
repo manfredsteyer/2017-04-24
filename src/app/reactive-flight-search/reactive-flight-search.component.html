@@ -1,0 +1,87 @@
+
+
+<form roundTrip [formGroup]="filter">
+
+    <h2>Dynamic</h2>
+
+    <div *ngFor="let item of formMetaData" class="form-group">
+        <label>{{item.label}}</label>
+        <input [formControlName]="item.name" class="form-control">
+    </div>
+
+    <h2>Static</h2>
+
+    <div *ngIf="!filter.valid">         
+        Fehler!
+    </div>
+
+    <div *ngIf="filter.hasError('roundTrip')">
+        RoundTrip!
+    </div>
+
+<div class="form-group">
+    <label>From</label>
+    <input class="form-control" formControlName="from"> 
+
+    <div *ngIf="!filter.controls['from'].valid && !filter.controls['from'].pending">Fehler<pre>{{ filter.controls['from'].errors | json }}</pre></div>
+    <div *ngIf="filter.controls['from'].pending"><marquee direction="down">Validating!</marquee></div>
+    <div *ngIf="filter.controls['from'].hasError('required')">Required</div>
+    <div *ngIf="filter.controls['from'].hasError('minlength')">Minlength</div>
+    <div *ngIf="filter.controls['from'].hasError('maxlength')">Maxlength</div>
+    <div *ngIf="filter.controls['from'].hasError('pattern')">Pattern</div>
+    <div *ngIf="filter.controls['from'].hasError('city')">City</div>
+    <div *ngIf="filter.controls['from'].hasError('asyncCity')">AsyncCity</div>
+
+</div>
+
+<div class="form-group">
+    <label>To</label>
+    <input class="form-control" formControlName="to">
+</div>
+
+<div class="form-group">
+    <button 
+        class="btn btn-default" 
+        [disabled]="!filter.valid"
+        (click)="search()">
+        Search
+    </button>
+</div>
+
+</form>
+<!--
+    [ngClass]="{ 'active': f == selectedFlight }"
+-->
+
+<div class="row">
+<div *ngFor="let f of flights" style="margin-bottom:20px" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+    <flight-card  
+        [item]="f"
+        [(selected)]="basket[f.id]">
+    </flight-card>
+</div>    
+</div>
+
+<!--
+    (selectedChange)="basket[f.id] = $event"
+-->    
+
+<!--
+<table class="table table-striped">
+    <tr *ngFor="let f of flights" [ngStyle]="{ 'background-color': (f == selectedFlight)  'orange' : '' }">
+        <td>{{f.id}}</td>
+        <td>{{f.from | city:'short' }}</td>
+        <td>{{f.to | city:'long' }}</td>
+        <td>{{f.date | date:'dd.MM.yyyy HH:mm' }}</td>
+        <td>
+            <a (click)="select(f)">Auswählen</a>
+        </td>
+    </tr>
+</table>
+-->
+<div class="row">
+<pre>Warenkorb
+-----------------
+{{ basket | json }}    
+</pre>    
+</div>

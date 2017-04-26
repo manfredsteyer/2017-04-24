@@ -1,6 +1,15 @@
 
 
-<form #f="ngForm">
+<form #f="ngForm" roundTrip>
+
+
+    <div *ngIf="!f?.valid">         
+        Fehler!
+    </div>
+
+    <div *ngIf="f?.hasError('roundTrip')">
+        RoundTrip!
+    </div>
 
 <div class="form-group">
     <label>From</label>
@@ -11,15 +20,18 @@
         pattern="[A-Za-zöäüßÖÄÜ]*"
         name="from"
         city="Graz,Hamburg,Zürich,Nürnberg,Wien,Berlin,Frankfurt"
+        asyncCity
         [(ngModel)]="from" 
         class="form-control"> 
 
-    <div *ngIf="!f?.controls['from']?.valid">Fehler<pre>{{ f?.controls['from']?.errors | json }}</pre></div>
+    <div *ngIf="!f?.controls['from']?.valid && !f?.controls['from']?.pending">Fehler<pre>{{ f?.controls['from']?.errors | json }}</pre></div>
+    <div *ngIf="f?.controls['from']?.pending"><marquee direction="down">Validating!</marquee></div>
     <div *ngIf="f?.controls['from']?.hasError('required')">Required</div>
     <div *ngIf="f?.controls['from']?.hasError('minlength')">Minlength</div>
     <div *ngIf="f?.controls['from']?.hasError('maxlength')">Maxlength</div>
     <div *ngIf="f?.controls['from']?.hasError('pattern')">Pattern</div>
     <div *ngIf="f?.controls['from']?.hasError('city')">City</div>
+    <div *ngIf="f?.controls['from']?.hasError('asyncCity')">AsyncCity</div>
 
 </div>
 
